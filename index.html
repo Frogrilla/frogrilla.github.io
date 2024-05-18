@@ -1,7 +1,19 @@
 <!DOCTYPE html>
 <html>
+	<head>
+		<title>MC Skin Arranger</title>
+		<link rel="stylesheet" href="style.css">
+	</head>
+
 	<body>
-		<h1>Test</h1>
-		<p>I'v never done this before</p>
+		<div id="processBar">
+			<form id="upload">
+				<input type="file" id="file" accept=".json">
+				<button>Upload</button>
+			</form>
+			<button onclick="download()">Download</button>
+			<button onclick="testSorter()">Test</button>
+		</div>
+	<script src="script.js"></script>
 	</body>
 </html>
