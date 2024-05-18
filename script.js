@@ -17,8 +17,9 @@ function handleSubmit (event) {
 }
 
 function download() {
+	createSkinTimes();
 	var a = window.document.createElement('a');
-	a.href = window.URL.createObjectURL(new Blob([JSON.stringify(skins)], {type: 'text/json'}));
+	a.href = window.URL.createObjectURL(new Blob([JSON.stringify(skins, null, "\t")], {type: 'text/json'}));
 	a.download = 'launcher_custom_skins.json';
 	
 	document.body.appendChild(a);
@@ -32,10 +33,17 @@ function loadSkins (event) {
 	console.log(skins);
 }
 
-function testSorter(){
+function createSkinTimes(){
+	let i = 0;
 	for(var key in skins["customSkins"]){
 		let date = new Date();
+		date.setSeconds(date.getSeconds(), i);
 		skins["customSkins"][key]["created"] = date.toISOString();
+		i++;
 	}
 	console.log(skins);
+}
+
+function randomOrder(){
+	skins["customSkins"] = Object.fromEntries(Object.entries(skins["customSkins"]).sort((a,b) => Math.sign(Math.round(Math.random()))-0.5));
 }
